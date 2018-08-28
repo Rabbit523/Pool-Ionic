@@ -1,0 +1,236 @@
+<ion-header>
+  <ion-navbar color="twitter">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{pool.pool_name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Pool Pictures -->
+  <!--<ion-slides pager loop autoplay="5000" style="max-height:30%;" class="slider">-->
+  <ion-slides pager loop style="max-height:30%;" class="slider">
+    <ion-slide *ngFor="let image of images" class="slider-slide">
+      <img src="http://rezzerve-tech.com/PoolsServer/images/{{image}}" imageViewer />
+    </ion-slide>
+  </ion-slides>
+  
+<ion-card>
+    <ion-card-content style="margin:0; padding:0;">
+      <ion-row>
+        <ion-col col-6 no-padding>
+          <button ion-button full clear no-margin icon-left (click)="goToMapPage()">
+            <img src="assets/icons/location.svg" style="vertical-align: middle; height:25px; width:25px;">
+            <span style=" color:black;">&nbsp;{{pool.city}}</span>
+          </button>
+        </ion-col>
+        <ion-col col-6 no-padding>
+          <button ion-button full clear no-margin icon-left (click)="callNumber()">
+            <img src="assets/icons/phone-call.svg" style="vertical-align: middle; height:25px; width:25px;">
+            <span style=" color:black;">&nbsp; {{'Call' | translate}}</span>
+          </button>
+        </ion-col>
+      </ion-row>
+      <hr />
+
+    <div class="photoDiv">
+
+      <img *ngIf="pool.room_num != 0" class="photoImg" tooltip="x{{pool.room_num}} Room" positionV="bottom" arrow src="assets/icons/sofa-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.room_num == 0" class="photoImg" tooltip="x{{pool.room_num}} Room" positionV="bottom" arrow src="assets/icons/sofa.svg" width="45px;" height="45px;">
+
+      <img *ngIf="pool.bedroom_num != 0" class="photoImg" tooltip="x{{pool.bedroom_num}} Bedroom" positionV="bottom" arrow src="assets/icons/bedroom-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.bedroom_num == 0"class="photoImg" tooltip="x{{pool.bedroom_num}} Bedroom" positionV="bottom" arrow src="assets/icons/bedroom.svg" width="45px;" height="45px;">
+
+      <img *ngIf="pool.kitchen_num != 0" class="photoImg" tooltip="x{{pool.kitchen_num}} Kitchen" positionV="bottom" arrow src="assets/icons/cooking-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.kitchen_num == 0" class="photoImg" tooltip="x{{pool.kitchen_num}} Kitchen" positionV="bottom" arrow src="assets/icons/cooking.svg" width="45px;" height="45px;">
+
+      <img *ngIf="pool.shower_num != 0" class="photoImg" tooltip="x{{pool.shower_num}} Shower" positionV="bottom" arrow src="assets/icons/shower-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.shower_num == 0" class="photoImg" tooltip="x{{pool.shower_num}} Shower" positionV="bottom" arrow src="assets/icons/shower.svg" width="45px;" height="45px;">
+
+      <img *ngIf="pool.toilet_num != 0" class="photoImg" tooltip="x{{pool.toilet_num}} Toilet" positionV="bottom" arrow src="assets/icons/toilet-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.toilet_num == 0" class="photoImg" tooltip="x{{pool.toilet_num}} Toilet" positionV="bottom" arrow src="assets/icons/toilet.svg" width="45px;" height="45px;">
+      
+      <img *ngIf="pool.football_num != 0" class="photoImg" tooltip="x{{pool.football_num}} Football fields" positionV="bottom" arrow src="assets/icons/soccer-field-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.football_num == 0" class="photoImg" tooltip="x{{pool.football_num}} Football fields" positionV="bottom" arrow src="assets/icons/soccer-field.svg" width="45px;" height="45px;">
+      
+      <img *ngIf="pool.tennis_num != 0" class="photoImg" tooltip="x{{pool.tennis_num}} Table tennis" positionV="bottom" arrow src="assets/icons/table-tennis-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.tennis_num == 0" class="photoImg" tooltip="x{{pool.tennis_num}} Table tennis" positionV="bottom" arrow src="assets/icons/table-tennis.svg" width="45px;" height="45px;">
+      
+      <img *ngIf="pool.kids_pool_num != 0" class="photoImg" tooltip="x{{pool.kids_pool_num}} Kids pool" positionV="bottom" arrow src="assets/icons/pool-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.kids_pool_num == 0" class="photoImg" tooltip="x{{pool.kids_pool_num}} Kids pool" positionV="bottom" arrow src="assets/icons/pool.svg" width="45px;" height="45px;">
+      
+      <img *ngIf="pool.tv_num != 0" class="photoImg" tooltip="x{{pool.tv_num}} TV" positionV="bottom" arrow src="assets/icons/monitor-color.svg" width="45px;" height="45px;">
+      <img *ngIf="pool.tv_num == 0" class="photoImg" tooltip="x{{pool.tv_num}} TV" positionV="bottom" arrow src="assets/icons/monitor.svg" width="45px;" height="45px;">
+    </div>
+    <hr />
+
+    <ion-item (click)="toggleTimingDetails()" >
+        <img src="assets/icons/clock.svg" style="vertical-align: middle; height:25px; width:25px; display:inline-flex;">
+        <span>{{'Details' | translate}} & {{'Timing' | translate}}</span>
+        <button ion-button clear item-end icon-left>
+          <ion-icon [name]="TimingIcon" color="black" large></ion-icon>
+        </button>
+      </ion-item>
+      <hr />
+      <div *ngIf="showTimingDetails">
+          <ion-row>
+              <ion-col *ngIf="!buttons.allDayDay && !buttons.allDayNight " col-6 left style="font-size:16px">
+                <ion-icon name="md-sunny" color="yellowColor" large></ion-icon>
+                 {{pool.day_start_time}}{{'AM' | translate}} to {{pool.day_end_time}}{{'PM' | translate}}
+              </ion-col>
+              <!--all day-->
+              <ion-col *ngIf="buttons.allDayDay && !buttons.allDayNight" col-6 left style="font-size:16px">
+                <ion-icon name="md-sunny" color="yellowColor" large></ion-icon>
+                 {{pool.all_day_start_time}}{{'AM' | translate}} to {{pool.all_day_end_time}}PM
+              </ion-col>
+              <ion-col col-6 right style="font-size:16px">
+                <ion-icon name="md-resize" color="secondary" large></ion-icon>
+                 ({{pool.size}})
+              </ion-col>
+            </ion-row> 
+            <hr />
+            <ion-row>
+                <ion-col *ngIf="!buttons.allDayNight && !buttons.allDayDay" col-6 left style="font-size:16px">
+                  <ion-icon name="md-moon" color="nightColor" large></ion-icon>
+                   {{pool.night_start_time}}PM to {{pool.night_end_time}}AM
+                </ion-col>
+                <!--all day-->
+                <ion-col *ngIf="buttons.allDayNight && !buttons.allDayDay" col-6 left style="font-size:16px">
+                  <ion-icon name="md-moon" color="nightColor" large></ion-icon>
+                   {{pool.all_day_start_time}}PM to {{pool.all_day_end_time}}AM
+                </ion-col>
+                <ion-col col-6 right style="font-size:16px">
+                  <ion-icon name="md-water" color="blackcolor" large></ion-icon>
+                   {{pool.water_type}}
+                </ion-col>
+              </ion-row>
+      </div>
+
+
+      <ion-item (click)="toggleDetails()" >
+        <img src="assets/icons/money.svg" style="vertical-align: middle; height:25px; width:25px; display:inline-flex;">
+        <span>{{'Prices' | translate}}</span>
+        <button ion-button clear item-end icon-left>
+          <ion-icon [name]="icon" color="black" large></ion-icon>
+        </button>
+      </ion-item>
+
+      <div *ngIf="showDetails">
+        <span style="text-align:center;" style="font-size:16px"><strong>{{'Weekdays' | translate}}</strong></span>
+        <hr />
+        <ion-row>
+          <ion-col col-6 left style="font-size:16px">
+              <ion-icon name="md-sunny" color="yellowColor" large></ion-icon>
+              <ion-icon name="md-moon" color="nightColor" large></ion-icon>
+              {{'Price' | translate}}: {{pool.current_normal_price}}BHD
+          </ion-col>
+          <ion-col col-6 right style="font-size:16px">
+            <ion-icon name="md-cash" color="yellowColor" large></ion-icon>
+             {{'Deposit' | translate}}: {{pool.current_normal_deposit}}BHD     
+          </ion-col>
+        </ion-row>
+        <span style="text-align:center;" style="font-size:16px"><strong>Weekends</strong></span>
+        <hr />
+        <ion-row>
+          <ion-col col-6 left style="font-size:16px">
+              <ion-icon name="md-sunny" color="yellowColor" large></ion-icon>
+              <ion-icon name="md-moon" color="nightColor" large></ion-icon>
+              {{'Price' | translate}}: {{pool.current_weekend_price}}BHD
+          </ion-col>
+          <ion-col col-6 right style="font-size:16px">
+            <ion-icon name="md-cash" color="yellowColor" large></ion-icon>
+             {{'Deposit' | translate}}: {{pool.current_weekend_deposit}}BHD      
+          </ion-col>
+        </ion-row>             
+      </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="pool.family_pool == true" >
+      <ion-card-content>
+        <div class="family">
+        {{'Family Only' | translate}}
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <div style="height:320px; font-family:'Roboto';">
+            <h3 style="text-align:center;">{{viewTitle}}</h3>
+            <calendar [eventSource]="eventSource" style="height:100px"
+                      [markDisabled]="markDisabled"
+                      [calendarMode]="calendar.mode"
+                      [currentDate]="calendar.currentDate"
+                      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+                      (onEventSelected)="onEventSelected($event)"
+                      (onTitleChanged)="onViewTitleChanged($event)"
+                      (onTimeSelected)="onTimeSelected($event)"
+                      step="30"
+                      noEventsLabel="" style="direction: ltr;">
+            </calendar>
+        </div>
+
+  <ion-row *ngIf="!buttons.allDay">
+      <ion-col *ngIf="buttons.active && buttons.day">
+        <button ion-button clean block icon-left style="background-color:#ffd500;" (click)="goToCheckoutPage('D')">
+          <ion-icon name="ios-sunny-outline" large></ion-icon>
+          {{'Day' | translate}}
+        </button>
+      </ion-col>
+      <ion-col *ngIf="buttons.active && !buttons.day">
+        <button ion-button clean block icon-left color="GrayColor">
+          <ion-icon name="ios-sunny-outline" large></ion-icon>
+          {{'Day' | translate}}
+        </button>
+      </ion-col>
+      <ion-col *ngIf="buttons.active && buttons.night">
+        <button ion-button clean block icon-left color="nightColor" (click)="goToCheckoutPage('N')">
+          <ion-icon name="ios-moon-outline" large></ion-icon>
+            {{'Night' | translate}}
+          </button>
+      </ion-col>
+      <ion-col *ngIf="buttons.active && !buttons.night">
+        <button ion-button clean block icon-left color="GrayColor">
+          <ion-icon name="ios-moon-outline" large></ion-icon>
+            {{'Night' | translate}}
+          </button>
+      </ion-col>
+    </ion-row>
+
+    <!--all day-->
+    <ion-row *ngIf="buttons.allDay">
+      <ion-col *ngIf="buttons.active && buttons.day && buttons.allDayDay">
+        <button ion-button clean block icon-left style="background-color:#ffd500;" (click)="goToCheckoutPage('D')">
+          <ion-icon name="ios-sunny-outline" large></ion-icon>
+          {{'Day' | translate}}
+        </button>
+      </ion-col>
+      <ion-col *ngIf="buttons.active && !buttons.day && buttons.allDayDay">
+        <button ion-button clean block icon-left color="GrayColor">
+          <ion-icon name="ios-sunny-outline" large></ion-icon>
+          {{'Day' | translate}}
+        </button>
+      </ion-col>
+      <ion-col *ngIf="buttons.active && buttons.night && buttons.allDayNight">
+        <button ion-button clean block icon-left color="nightColor" (click)="goToCheckoutPage('N')">
+          <ion-icon name="ios-moon-outline" large></ion-icon>
+            {{'Night' | translate}}
+          </button>
+      </ion-col>
+      <ion-col *ngIf="buttons.active && !buttons.night && buttons.allDayNight">
+        <button ion-button clean block icon-left color="GrayColor">
+          <ion-icon name="ios-moon-outline" large></ion-icon>
+            {{'Night' | translate}}
+          </button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

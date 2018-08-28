@@ -1,0 +1,72 @@
+<ion-menu [content]="content">
+
+  <ion-header class="container" style="width: 100%; height:18%; padding-bottom:0px; background-color:#65a2d9">
+    
+    <button ion-button menuClose class="topright" clear outline color="light" (click)="goToSettingsPage()">
+      <ion-icon name="ios-settings-outline"></ion-icon>
+    </button>
+    <div class="card-title">{{currentUser.first_name}}  {{currentUser.last_name}}</div>
+    <div class="card-subtitle">{{currentUser.email}}</div>
+  </ion-header>
+
+  <ion-content class="sidebar-font">
+    <!-- My Details Section -->
+    <ion-list>
+      <ion-list-header>        
+        {{'MY DETAILS' | translate}}
+      </ion-list-header>
+
+      <button ion-item menuClose (click)="goToHome()">
+        <ion-icon name="ios-home" item-start></ion-icon>
+          {{'HOME' | translate}}
+      </button>
+
+      <button ion-item menuClose (click)="goToMyReservations()">
+        <ion-icon name="md-list" item-start></ion-icon>          
+          {{'Reservations' | translate}}
+      </button>
+      <button ion-item menuClose (click)="goToLanguage()">
+        <ion-icon name="md-globe" item-start></ion-icon>
+          {{'LANGUAGE' | translate}}
+      </button>
+    </ion-list>
+	
+    <!-- My Details Section -->
+
+    <!-- Help & Support Section -->
+    <!--<ion-list>
+      <ion-list-header>
+        HELP AND SUPPORT
+      </ion-list-header>
+      <button ion-item>
+        <ion-icon name="ios-help-outline" item-start></ion-icon>
+        FAQs
+      </button>
+
+      <button ion-item>
+        <ion-icon name="ios-call-outline" item-start></ion-icon>
+        Customer Care
+      </button>
+
+      <button ion-item>
+        <ion-icon name="ios-alert-outline" item-start></ion-icon>
+        About
+      </button>
+    </ion-list>-->
+    <!-- Help & Support Section -->
+    <!-- Sidebar Footer -->
+    <ion-footer>
+        <ion-list *ngIf="currentUser.customer_id != 0">
+            <button (click)="logout()" ion-item>
+              <ion-icon name="ios-log-out-outline" color="danger" item-start></ion-icon>
+                <span style="color:red;">{{'Logout' | translate}}</span> 
+            </button>
+        </ion-list>
+    </ion-footer>
+    <!-- Sidebar Footer -->
+</ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" dir="{{textDir}}"></ion-nav>

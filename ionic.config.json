@@ -1,0 +1,8 @@
+{
+  "name": "Pools",
+  "app_id": "b6c0a348",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

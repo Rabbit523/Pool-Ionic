@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="twitter">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{'Log In' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content style="width:100%;">
+      <span><strong>{{'Already have an account?' | translate}}</strong></span>
+      <ion-list no-lines>
+        <ion-item style="font-size:90%;">
+          <ion-icon color="dark" name="ios-mail-outline" item-start></ion-icon>
+          <ion-input type="email" [(ngModel)]="user.email" placeholder="{{'Email' | translate}}"></ion-input>
+        </ion-item>
+
+        <ion-item style="font-size:90%;">
+          <ion-icon color="dark" name="ios-lock-outline" item-start></ion-icon>
+          <ion-input  type="{{type}}" [(ngModel)]="user.password" placeholder="{{'Password' | translate}}"></ion-input>
+          <button (click)="showPsw()" color="GrayColor" ion-button icon-only clear item-end>
+              <ion-icon *ngIf="type=='text'" name="eye"></ion-icon>
+              <ion-icon *ngIf="type=='password'" name="eye-off"></ion-icon>
+          </button>
+        </ion-item>
+
+        <br />
+        <button ion-button block color="twitter"  (click)="login()">{{'LOGIN' | translate}}</button>
+      </ion-list>
+
+      <ion-row>
+        <ion-col col-6>
+          <a style="color:black;" (click)="moveToForgotPasswordPage()">{{'Forgot Passowrd?' | translate}}</a>
+        </ion-col>
+        <ion-col col-6 align="right">
+          <a style="color:green;" (click)="moveToCreateAccountPage()">{{'Create an account' | translate}}</a>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

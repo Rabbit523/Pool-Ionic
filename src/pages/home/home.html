@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar color="twitter">
+
+    <ion-buttons left>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>  
+
+    <ion-title style="text-align:center;">Rezzerve</ion-title>
+
+    <ion-buttons right>
+      <button ion-button  (click)="openFilter()">
+          <ion-icon name="ios-options-outline" style="font-size:25px"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+
+  <!--you need to change img url "localhost to your server later"-->
+  <ion-card style="width:100%; margin-right:0%; margin-left:0%; margin-top:0%; margin-bottom:1%;" *ngFor="let pool of pools" 
+  (click)="goToDetailsPage(pool.pool_id)" no-padding>
+    <img src="http://rezzerve-tech.com/PoolsServer/images/{{pool.pmain_image}}"/>
+    <img *ngIf="pool.offer" src="assets/icons/discount.svg" class="offer"/>
+    <div class="card-title" *ngIf="current_lang == 'en'">{{pool.pool_name}}</div>
+    <div class="card-subtitle" *ngIf="current_lang == 'en'">{{pool.city}}</div>
+    <div class="card-title" *ngIf="current_lang == 'ar'">{{pool.ar_pool_name}}</div>
+    <div class="card-subtitle" *ngIf="current_lang == 'ar'">{{pool.ar_city}}</div>
+    <div class="layer"></div>
+    <div class="card-pricing-normal"><ion-icon name="ios-calendar"><span style="font-family:'Raleway'; font-size:86%;"> {{'Normal' | translate}}: {{pool.current_normal_price}} BD</span></ion-icon></div>
+    <div class="card-pricing-holiday"><ion-icon name="md-calendar"><span style="font-family:'Raleway'; font-size:86%;"> {{'Holiday' | translate}}: {{pool.current_weekend_price}} BD</span></ion-icon></div>
+  </ion-card>
+
+  <!--<ion-item *ngIf="noMore">
+    <ion-label>No more pools to fetch :(</ion-label>
+  </ion-item>-->
+
+  <ion-infinite-scroll (ionInfinite)="fetchPools($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  </ion-content>

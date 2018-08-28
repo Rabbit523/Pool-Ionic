@@ -1,0 +1,51 @@
+page-details {
+    ion-content {
+        background-color: #EFEFEF !important;
+    }
+    
+    font-family:'Raleway';
+
+    .family{
+        background-color:#FE5BAC;
+        padding: 3%;
+        font-size: 120%;
+        font-weight: bold;
+        color: white;
+        border-radius: 15px;
+    }
+
+    .photoDiv {
+        margin: auto;
+        padding-left:3%;
+        padding-right:3%;
+        display: inline-flex;
+        width: 100%;
+        height: auto;
+        text-align:center;
+      }
+
+    .photoImg {
+        margin: auto;
+        width: 8.4%;
+    }
+
+    .slider {
+        height: 30%; /* slider height you want */
+        width:100%;
+    }
+    .slider-slide {
+        color: rgb(26, 54, 146);
+        background-color: water;
+        height: 100%;
+    }
+
+    .swiper-pagination-bullet {
+        background: white;
+        opacity: 1.0;
+    }
+    
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        background:#65a2d9;
+    }
+}

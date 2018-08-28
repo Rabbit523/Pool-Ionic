@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar color="twitter">
+      <ion-buttons left>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>{{'Settings' | translate}}</ion-title>
+      <ion-buttons right>
+        <button ion-button>
+            <ion-icon name="search" style="font-size:25px" hidden disabled></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content >
+<ion-card>
+    <ion-list>
+    <button ion-item (click)="goToAccountInfoPage()">
+      <ion-icon item-start name="md-person"></ion-icon> {{'Account Info' | translate}}
+    </button>
+    <hr />
+    <button ion-item (click)="goToChangeEmailPage()">
+     <ion-icon item-start name="md-mail"></ion-icon> {{'Change Email' | translate}}
+    </button>
+    <hr />
+    <button ion-item (click)="goToChangePasswordPage()">
+     <ion-icon item-start name="md-lock"></ion-icon> {{'Change Password' | translate}}
+    </button> 
+  </ion-list>
+</ion-card>
+
+<!--
+<ion-card>
+  <ion-card-content>
+  <ion-item>
+    <ion-icon item-start name="md-notifications"></ion-icon>
+    <ion-label> Notifications </ion-label>
+    <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+  </ion-card-content>
+</ion-card>
+-->
+
+</ion-content>

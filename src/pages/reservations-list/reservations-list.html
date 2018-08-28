@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar color="twitter">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title >{{'My Reservations' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="margin:0; padding:0;">
+  
+  <ion-card *ngFor="let reservation of reservations">
+    <ion-card-content>
+      <h6 style="font-size:10px; text-align:center;">ID {{reservation.order_id}}</h6>
+      <br />
+
+      <ion-row>
+        <ion-col col-3>
+          <img src="assets/icons/swimming-pool.svg" style="width:30px; height:30px;">
+        </ion-col>
+        <ion-col col-9>
+          {{reservation.pool_name}}   ({{reservation.size}})
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-3>
+          <img src="assets/icons/calendar_summary.svg" style="width:30px; height:30px;">
+        </ion-col>
+        <ion-col col-9>
+          {{reservation.order_datetime}}  -  {{reservation.day_night}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-3>
+          <img src="assets/icons/map-location.svg" style="width:30px; height:30px;">
+        </ion-col>
+        <ion-col col-9>
+          {{reservation.city}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-3>
+          <img src="assets/icons/money.svg" style="width:30px; height:30px;">
+        </ion-col>
+        <ion-col col-9>
+          <div>{{'Balance' | translate}} {{reservation.balance}} BD</div>
+        </ion-col>
+      </ion-row>
+      <hr />
+
+      <ion-row>
+        <ion-col col>
+          <button ion-button icon-left clear small (click)="shareLocation(reservation.latitude,reservation.longitude)">
+            <ion-icon name="md-share"></ion-icon>{{'Share' | translate}}
+          </button>
+        </ion-col>
+        <ion-col col>
+          <button ion-button icon-left clear small (click)="callNumber(reservation.owner_mobile1)">
+            <ion-icon name="md-call" color="secondary"></ion-icon>
+            <div>{{'Call' | translate}}</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

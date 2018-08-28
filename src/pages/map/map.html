@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="twitter">
+      <ion-buttons left>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>{{'Location' | translate}}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<!-- Google Map Div -->
+
+<ion-content padding>
+  <agm-map [latitude]="location.lat" [longitude]="location.long" [zoom]="16">
+    <agm-marker [latitude]="location.lat" [longitude]="location.long">
+    </agm-marker>
+  </agm-map>
+</ion-content>
+
+<!-- Footer Buttons (Share Location & Navigate) -->
+
+<ion-footer>
+  <ion-row>
+    <ion-col>
+      <button ion-button clean block icon-left color="twitter" (click)="ShareLocation()">
+        <ion-icon name="md-share" large></ion-icon>{{'Share' | translate}}
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button clean block icon-left color="twitter" (click)="NavigateLocation()">
+        <ion-icon name="ios-navigate-outline" large></ion-icon>{{'Navigate' | translate}}
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

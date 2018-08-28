@@ -1,0 +1,128 @@
+page-login{
+    ion-content {
+        background-color: #EFEFEF !important;
+      }
+    
+      font-family:'Raleway';
+    .transparent_header{
+        background: none;
+        &:after{
+            background-image: none;
+        }
+        .toolbar-background-md{
+            background: transparent;
+        }
+    }
+    .login_register{
+        .scroll-content{
+            padding-bottom: 16px !important;
+        }
+        .app_form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            min-height: calc(100% - 276px);
+        }
+        .for_psw{
+            color: color($colors,dark); 
+        }
+        .social_icon{
+            display: inline-block;
+            width: 100%;
+            .or{
+                font-size: 1.6rem;
+                color: color($colors,light); 
+                text-align: center;
+                position: relative;
+                &:before{
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 10px;
+                    width: calc(50% - 23px);
+                    height: 1px;
+                    background: rgba(color($colors,light),.5);   
+                }
+                &:after{
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 10px;
+                    width: calc(50% - 23px);
+                    height: 1px;
+                    background: rgba(color($colors,light),.5);  
+                }
+            }
+            ion-row{
+                text-align: center;
+                width: 250px;
+                margin: 16px auto;
+                ion-col{
+                    &:nth-child(1){
+                        span{
+                            background: color($colors,facebook); 
+                        } 
+                    }
+                    &:nth-child(2){
+                        span{
+                            background: color($colors,google);
+                        } 
+                    }
+                    &:nth-child(3){
+                        span{
+                            background: color($colors,twitter);  
+                        } 
+                    }
+                }
+                span{
+                    width: 45px;
+                    height: 45px;
+                    line-height: 45px;
+                    border-radius: 50%;
+                    font-size: 23px;
+                    display: inline-block;
+                    color: color($colors,light); 
+                }
+            }
+        }
+    }
+
+    /*main form*/
+    .app_form{
+        .list-md{
+            margin-bottom: 10px;
+            .item-md{
+                background: color($colors,light); 
+                margin-bottom: 3px;
+                font-size: 1.4rem;
+                padding-left: 10px;
+                border-radius: 4px;
+                margin-bottom: 10px;
+                height: 42px;
+                ion-icon{
+                    font-size: 2rem;
+                    margin-right: 10px;
+                    line-height: 2.5rem;
+                    margin: 0 10px 0 0;
+                }
+                [item-end]{
+                    text-align: center;
+                    z-index: 1000;
+                    width: 30px;
+                    height: 30px;
+                    margin: 0;
+                    ion-icon{
+                        margin: 0;
+                    }
+                }
+                .item-inner{
+                    margin-left: 0;
+                }
+            }
+        }
+        .button-md{
+            font-family:Roboto-Medium;
+        }  
+    }
+}

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar color="twitter">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{'Account Info' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+  <ion-list lines>
+    <ion-item>
+      <ion-label stacked>{{'Email' | translate}}</ion-label>
+      <ion-input disabled type="email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>{{'First Name' | translate}}</ion-label>
+      <ion-input type="text" [(ngModel)]="user.first_name" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>{{'Last Name' | translate}}</ion-label>
+      <ion-input type="text" [(ngModel)]="user.last_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>{{'Mobile Number' | translate}}</ion-label>
+      <ion-input type="tel" [(ngModel)]="user.mobile" maxlength="8"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!--
+  <ion-card>
+   <ion-card-content>
+    <p style="text-align:left"><strong>Receive updates on offers, promotions and discounts</strong></p>
+    <ion-list>
+    <ion-item>
+    <ion-label> SMS Notifications </ion-label>
+    <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+  <hr/>
+  <ion-item>
+    <ion-label> Newsletter Subscription </ion-label>
+    <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+
+    </ion-list>
+
+  </ion-card-content>
+</ion-card>
+-->
+
+<button ion-button block color="GrayColor" *ngIf="user.first_name == '' || user.last_name == '' || user.mobile =='' ">
+  {{'SAVE' | translate}}
+</button>
+<button ion-button block color="twitter" *ngIf="user.first_name != '' && user.last_name != '' && user.mobile != '' " (click)="updateUser()">
+  {{'SAVE' | translate}}
+</button>
+
+
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="twitter">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{'Change Email' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines>
+    <ion-item>
+      <ion-label stacked>{{'New Email' | translate}}</ion-label>
+      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <span *ngIf="emailError" style="color:red;">{{'Enter valid Email' | translate}}</span>
+
+    <ion-item>
+    <ion-label stacked>{{'Confirm New Email' | translate}}</ion-label>
+      <ion-input type="email" [(ngModel)]="user.confirmEmail"></ion-input>
+    </ion-item>
+    
+
+    <ion-item>
+      <ion-label stacked>{{'Current Passowrd' | translate}}</ion-label>
+      <ion-input type="{{type}}" [(ngModel)]="user.password"></ion-input>
+      <button (click)="showPsw()" color="GrayColor" ion-button icon-only clear item-end>
+          <ion-icon *ngIf="type=='text'" name="eye"></ion-icon>
+          <ion-icon *ngIf="type=='password'" name="eye-off"></ion-icon>
+      </button>
+
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block color="twitter" (click)="updateEmail()">
+    {{'SAVE' | translate}}
+  </button>
+
+</ion-content>

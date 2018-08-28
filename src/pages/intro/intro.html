@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-slides pager (ionSlideDidChange)="slideChanged()" (ionSlideDrag)="slideMoved()">
+    
+    <ion-slide>
+      <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+        <img src="assets/icons/juice.svg" style="width:150px; height:300px; padding-top:20%;" [@bounce]='state' (@bounce.done)="animationDone()">
+      </div>
+      <div [@bounce]='state'>
+        <h2>{{'Hello' | translate}}!</h2>
+        <p>{{'You have just started to change your life for better' | translate}}</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+        <img src="assets/icons/calendar.svg" style="width:150px; height:300px; padding-top:20%;" [@bounce]='state'>
+      </div>
+      <div [@bounce]='state'>
+        <h2>{{'Save Time' | translate}}</h2>
+        <p>{{'Pick a pool, select a day. You are two clicks away from your reservation!' | translate}}</p>
+      </div>
+    </ion-slide>
+    
+    <ion-slide>
+      <div class="diag" style="background: url('assets/imgs/whitebg.svg') no-repeat">
+        <img src="assets/icons/credit-card.svg" style="width:150px; height:300px; padding-top:20%;" [@bounce]='state'>
+      </div>
+      <div [@bounce]='state'>
+        <h2>Rezzerve & {{'Pay Online' | translate}}</h2>
+        <p>{{'Pay reservation deposit from your home' | translate}}</p>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+
+  <button (click)="skip()" id="skip">{{ skipMsg }}</button>
+
+</ion-content>

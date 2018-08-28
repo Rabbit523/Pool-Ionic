@@ -1,0 +1,59 @@
+page-checkout {
+    ion-content {
+        background-color: #EFEFEF !important;
+    }
+    
+    font-family:'Raleway';
+
+    .swiper-pagination-bullet {
+        background: white;
+        opacity: 1.0;
+    }
+    
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        background:#65a2d9;
+    }
+    .slider {
+    height: 280px; /* slider height you want */
+    width:100%;
+    }
+    .slider-slide {
+        color: rgb(26, 54, 146);
+        background-color: water;
+        height: 100%;
+    }
+    .rules{
+        text-align: center;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .pool_info{
+        background: lighten(color($colors,light), 10%);
+        .item-md{
+            padding: 0;
+            background: none;
+            ion-icon{
+                font-size: 1.8rem;
+                margin: 0;
+                line-height: 2.3rem;
+            }
+            .item-inner{
+                margin-left: 5px;
+                padding: 0;
+                .label-md{
+                    margin: 0;
+                    p{
+                        font-family:Roboto-Bold;
+                        font-size: 1.2rem;
+                        color: color($colors,dark);
+                        span{
+                            display: block;
+                            font-family:Roboto-Light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

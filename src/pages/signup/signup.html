@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar color="twitter">
+    <ion-buttons left>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{'Create Account' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-content style="width:100%;">
+          <ion-list lines>
+            <ion-item style="font-size:90%;">
+              <ion-icon color="dark" name="ios-mail-outline" item-start></ion-icon>
+              <ion-input type="email" [(ngModel)]="user.email" placeholder="Email"></ion-input>
+            </ion-item>
+            <span *ngIf="emailError" style="color:red; font-family:robot; font-size:80%;">{{'Enter valid Email' | translate}}</span>
+           
+    
+            <ion-item style="font-size:90%;">
+              <ion-icon color="dark" name="ios-lock-outline" item-start></ion-icon>
+              <ion-input  type="{{type}}" [(ngModel)]="user.password" placeholder="Password"></ion-input>
+              <button (click)="showPsw()" color="GrayColor" ion-button icon-only clear item-end>
+                  <ion-icon *ngIf="type=='text'" name="eye"></ion-icon>
+                  <ion-icon *ngIf="type=='password'" name="eye-off"></ion-icon>
+              </button>
+            </ion-item>
+  
+            <ion-item style="font-size:90%;">
+              <ion-icon color="dark" name="ios-person-outline" item-start></ion-icon>
+              <ion-input type="text" [(ngModel)]="user.firstName" placeholder="First Name" maxlength="15"></ion-input>
+
+            </ion-item>
+  
+            <ion-item style="font-size:90%;">
+              <ion-icon color="dark" name="ios-person-outline" item-start></ion-icon>
+              <ion-input type="text" [(ngModel)]="user.lastName" placeholder="Last Name" maxlength="20"></ion-input>
+            </ion-item>
+
+
+          <ion-item style="font-size:90%;"> 
+              <ion-icon color="dark" name="ios-phone-portrait-outline" item-start></ion-icon>
+              <ion-input type="tel" [(ngModel)]="user.number" placeholder="Mobile Number" maxlength="8"></ion-input>
+            </ion-item>
+    
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card>
+        <ion-card-content>
+          <div>{{'By creating an account you agree to our' | translate}} <a (click)="rules()">{{'terms and conditions' | translate}}</a></div>
+          <ion-row>
+            <ion-col col-12>
+                <button
+                ion-button
+                block color="GrayColor"
+                *ngIf="!user.email || !user.password || !user.firstName || !user.lastName || !user.number">
+                {{'CREATE ACCOUNT' | translate}}
+              </button>
+                <button
+                  ion-button
+                  block color="twitter"
+                  *ngIf="user.email && user.password && user.firstName && user.lastName && user.number"
+                  (click)="createAccount()">
+                  {{'CREATE ACCOUNT' | translate}}
+                </button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+</ion-content>
